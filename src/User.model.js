@@ -31,6 +31,10 @@ const User = sequelize.define(
       allowNull: false,
       defaultValue: false,
     },
+    resetToken: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
   {
     timestamps: false,

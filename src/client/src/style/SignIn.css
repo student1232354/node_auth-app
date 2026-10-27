@@ -1,4 +1,3 @@
-/* Центруємо та стилізуємо весь контейнер форми */
 .SignUp_page {
   max-width: 400px;
   margin: 40px auto 20px auto;
@@ -10,7 +9,21 @@
   font-family: 'Mont', sans-serif;
 }
 
-/* Заголовок форми */
+
+.for_this_fucking_things {
+  padding-top: 20px;
+}
+.log-in_thing {
+
+  color: #57606a;
+  text-decoration: none;
+}
+
+.log-in_thing:hover {
+  color: #0969da;
+  text-decoration: none;
+}
+
 .SignUp_page h1 {
   font-size: 24px;
   font-weight: 600;
@@ -19,7 +32,6 @@
   margin-bottom: 24px;
 }
 
-/* Підписи до полів (Email, Password) */
 .Sign {
   font-size: 14px;
   font-weight: 500;
@@ -27,7 +39,6 @@
   margin-bottom: 8px;
 }
 
-/* Поля введення (input) */
 .SignUp_page input {
   width: 100%;
   height: 40px;
@@ -38,11 +49,10 @@
   font-size: 14px;
   color: #24292f;
   background-color: #f6f8fa;
-  box-sizing: border-box; /* Щоб padding не розширював input за межі блоку */
+  box-sizing: border-box;
   transition: border-color 0.2s ease, background-color 0.2s ease;
 }
 
-/* Ефект при фокусі на полі введення */
 .SignUp_page input:focus {
   outline: none;
   border-color: #0969da;
@@ -50,14 +60,13 @@
   box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.3);
 }
 
-/* Кнопка відправки форми */
 .button_Sign {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 40px;
-  background-color: #2da44e; /* Зелений колір кнопки в стилі GitHub */
+  background-color: #2da44e;
   color: #ffffff;
   border: none;
   border-radius: 6px;

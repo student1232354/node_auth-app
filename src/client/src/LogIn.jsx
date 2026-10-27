@@ -56,7 +56,7 @@ function LogIn() {
 
         <p className="password">Password</p>
         <input
-          type="text"
+          type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
           required
@@ -71,6 +71,8 @@ function LogIn() {
         <div>
           <p>Haven't any account? please Sign in</p>
            <Link to="/sign-up">Sign up</Link>
+          <p>Forgot the password?</p>
+           <Link to="/email-sent">here the link to make new one</Link>
         </div>
         </form>
       </div>

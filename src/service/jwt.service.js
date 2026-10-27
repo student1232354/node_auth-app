@@ -1,5 +1,6 @@
 'use strict';
 
+const { randomUUID } = require('crypto');
 const jwt = require('jsonwebtoken');
 
 const getSecret = () => {
@@ -17,6 +18,8 @@ const getSecret = () => {
 const signAccessToken = (user) => {
   return jwt.sign({ sub: user.id, email: user.email }, getSecret(), {
     expiresIn: process.env.JWT_EXPIRES_IN || '1h',
+    jwtid: randomUUID(), // унікальний номер токена
+    // для кожного створеного токена
   }); // тут ми створюємо хешований рядок,
   //  який можна розпакувати, і отримати типу як об'єкт?
   // jwt.sign - функція яка хешує об'єкт і перетворює його на рядок

@@ -1,16 +1,17 @@
-//import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route, Link } from 'react-router-dom';
 import './App.css'
 import SignUp from './SignUp';
 import LogIn from './LogIn';
 import Profile from './Profile';
+import Resetpass from './resetpass';
+import Activation from './Activation';
+import NotFound from './NotFound';
+import EmailSend from './Emailsend';
 
   /*eslint-disable*/
 
 function App() {
-
-  //const [array, setArray] = useState([]); HashRouter
-
   return (
     <>
       <header>
@@ -28,6 +29,11 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/log-in" element={<LogIn />} />
           <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/activation/:token" element={<Activation />} />
+          <Route path="/" element={<SignUp />}></Route>
+          <Route path="/forgot-password/:token" element={<Resetpass />}></Route>
+          <Route path="*" element={<NotFound />} />
+          <Route path="/email-sent" element={<EmailSend />}></Route>
         </Routes>
       </main>
 

@@ -10,6 +10,9 @@ const { Strategy: LocalStrategy } = require('passport-local');
 // У твоєму проєкті логіном буде email.
 const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
 
+const { isRevoked } = require('../service/newfile');
+// список номерів токенів які ревркнулись
+
 // passport-jwt
 // Бібліотека для іншого способу автентифікації:
 // перевірки JWT-токена, який клієнт надсилає серверу.
@@ -77,12 +80,28 @@ passport.use(
 
       // Секретний ключ із .env, потрібний для перевірки підпису токена
       secretOrKey: getSecret(),
+      passReqToCallback: true, //
     },
 
     // payload — дані з перевіреного токена, декодований об'єкт
     // done — повідомляє Passport результат перевірки користувача
-    async (payload, done) => {
+    async (req, payload, done) => {
       try {
+        if (isRevoked(payload.jti)) {
+          return done(null, false);
+        }
+
+        // якщо isRevoked - payload.jti,
+        //  тобто ми беремо з наших даних токену цей номер
+        //  тобто JWT генерує токен,
+        //  ми кидаємо його номер в revoke,
+        //  чи isRevoked, а також в самий токен, а потім тупо звіряємо його
+        //  на цьому етапі при перевірці в PAssport,
+        //  чи типу такий ще досі не активний чи вже активний,
+        //  якщо він активний то кидаємо return done(null, false);?
+
+        req.tokenPayload = payload;
+
         // Шукаємо користувача в базі за його ID із токена
         const user = await User.findByPk(payload.sub);
 
