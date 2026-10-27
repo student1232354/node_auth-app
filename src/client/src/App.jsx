@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react'
 import { Routes, Route, Link } from 'react-router-dom';
-import './App.css'
+import './App.css';
 import SignUp from './SignUp';
 import LogIn from './LogIn';
 import Profile from './Profile';
@@ -8,8 +7,8 @@ import Resetpass from './resetpass';
 import Activation from './Activation';
 import NotFound from './NotFound';
 import EmailSend from './Emailsend';
-
-  /*eslint-disable*/
+import ResetSuccess from './ResetSuccess';
+/*eslint-disable*/
 
 function App() {
   return (
@@ -33,7 +32,8 @@ function App() {
           <Route path="/" element={<SignUp />}></Route>
           <Route path="/forgot-password/:token" element={<Resetpass />}></Route>
           <Route path="*" element={<NotFound />} />
-          <Route path="/email-sent" element={<EmailSend />}></Route>
+          <Route path="/forgot-password" element={<EmailSend />}></Route>
+          <Route path="/reset-success" element={<ResetSuccess />} />
         </Routes>
       </main>
 

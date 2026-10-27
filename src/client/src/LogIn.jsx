@@ -2,7 +2,7 @@ import { useState } from 'react';
 /*eslint-disable*/
 import { Link, useNavigate } from 'react-router-dom';
 import '../src/style/SignIn.css';
-import { Loader } from '../src/Loader/Loader.tsx';
+import { Loader } from '../src/Loader/Loader';
 
 const API_URL = 'http://localhost:3000';
 
@@ -72,7 +72,7 @@ function LogIn() {
           <p>Haven't any account? please Sign in</p>
            <Link to="/sign-up">Sign up</Link>
           <p>Forgot the password?</p>
-           <Link to="/email-sent">here the link to make new one</Link>
+           <Link to="/forgot-password">here the link to make new one</Link>
         </div>
         </form>
       </div>

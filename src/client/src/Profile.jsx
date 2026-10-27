@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Loader } from '../src/Loader/Loader.tsx';
-const API_URL = 'http://localhost:3000';
+import { Loader } from '../src/Loader/Loader.jsx';
 import '../src/style/SignIn.css';
+
+const API_URL = 'http://localhost:3000';
 
 function Profile() {
   const navigate = useNavigate();
@@ -22,11 +23,9 @@ function Profile() {
   const [newEmail, setNewEmail] = useState('');
   const [confirmEmail, setConfirmEmail] = useState('');
 
-
-
-
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
+
     if (!token) {
       navigate('/log-in');
 
@@ -44,7 +43,6 @@ function Profile() {
         }
 
         return data;
-
       })
       .then((data) => {
         setUser(data.user);
@@ -54,7 +52,6 @@ function Profile() {
         localStorage.removeItem('accessToken');
         navigate('/log-in');
       });
-
   }, [navigate]);
 
   async function handleLogout() {
@@ -77,6 +74,7 @@ function Profile() {
 
   function handleSubmit(event) {
     const token = localStorage.getItem('accessToken');
+
     event.preventDefault();
 
     setErrors({});
@@ -111,10 +109,10 @@ function Profile() {
       .finally(() => setIsLoading(false));
   }
 
-
   // passsubmit
   function passwordSubmit(event) {
     const token = localStorage.getItem('accessToken');
+
     event.preventDefault();
 
     setErrors({});
@@ -149,7 +147,6 @@ function Profile() {
       })
       .finally(() => setIsLoading(false));
   }
-
 
   function handleEmailSubmit(event) {
     event.preventDefault();
@@ -195,7 +192,6 @@ function Profile() {
       .catch(() => setErrors({ form: 'Server is not available' }))
       .finally(() => setIsLoading(false));
   }
-
 
   return (
     <>
@@ -251,10 +247,11 @@ function Profile() {
             onChange={(event) => setConfirmEmail(event.target.value)}
             required
           />
-          {errors.confirmEmail && <p className="error">{errors.confirmEmail}</p>}
+          {errors.confirmEmail && (
+            <p className="error">{errors.confirmEmail}</p>
+          )}
 
           {errors.form && <p className="error">{errors.form}</p>}
-          {message && <p className="success">{message}</p>}
 
           <button className="button_Sign" type="submit" disabled={isLoading}>
             {isLoading ? 'Saving...' : 'Change email'}
@@ -265,7 +262,7 @@ function Profile() {
           <h2>Change Password</h2>
           <p className="password Sign">Write old password here</p>
           <input
-            //type='password'
+            type="password"
             value={Thispassword}
             onChange={(event) => setThisPassword(event.target.value)}
             required
@@ -273,7 +270,7 @@ function Profile() {
 
           <p className="password Sign">here you need to write new pass</p>
           <input
-            //type='password'
+            type="password"
             value={newPassword}
             onChange={(event) => setnewPassword(event.target.value)}
             required
@@ -281,21 +278,24 @@ function Profile() {
 
           <p className="password Sign">here you need to confirm new pass</p>
           <input
-            //type='password'
+            type="password"
             value={reallyNew}
             onChange={(event) => setReallyNew(event.target.value)}
             required
           />
-           {errors.password && <p className="error">{errors.password}</p>}
+          {errors.password && <p className="error">{errors.password}</p>}
           <button className="button_Sign" type="submit" disabled={isLoading}>
             {isLoading ? 'Sending...' : 'change'}
           </button>
         </form>
+          {message && <p className="success">{message}</p>}
 
         {Array.isArray(errors.password) && (
           <ul>
             {errors.password.map((msg) => (
-              <li key={msg} className="error">{msg}</li>
+              <li key={msg} className="error">
+                {msg}
+              </li>
             ))}
           </ul>
         )}
@@ -305,4 +305,3 @@ function Profile() {
 }
 
 export default Profile;
-

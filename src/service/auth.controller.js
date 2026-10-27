@@ -367,7 +367,7 @@ const changeEmail = async (req, res, next) => {
   try {
     const { password, newEmail, confirmEmail } = req.body || {};
     const errors = {};
-    // 1. Підтвердження паролем: порівнюємо введений пароль з хешем у базі.
+    // Підтвердження паролем: порівнюємо введений пароль з хешем у базі.
 
     const isPasswordCorrect = await bcrypt.compare(
       String(password || ''),
