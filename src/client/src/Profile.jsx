@@ -288,7 +288,7 @@ function Profile() {
             {isLoading ? 'Sending...' : 'change'}
           </button>
         </form>
-          {message && <p className="success">{message}</p>}
+        {message && <p className="success">{message}</p>}
 
         {Array.isArray(errors.password) && (
           <ul>
